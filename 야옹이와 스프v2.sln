@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.13.35931.197 d17.13
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "야옹이와 스프v2", "야옹이와 스프v2.vcxproj", "{EF1778D4-EDB7-43FB-A535-B1C7A3E299DF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|ARM64 = Debug|ARM64
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|ARM64 = Release|ARM64
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EF1778D4-EDB7-43FB-A535-B1C7A3E299DF}.Debug|ARM64.ActiveCfg = Debug|ARM64
+		{EF1778D4-EDB7-43FB-A535-B1C7A3E299DF}.Debug|ARM64.Build.0 = Debug|ARM64
+		{EF1778D4-EDB7-43FB-A535-B1C7A3E299DF}.Debug|x64.ActiveCfg = Debug|x64
+		{EF1778D4-EDB7-43FB-A535-B1C7A3E299DF}.Debug|x64.Build.0 = Debug|x64
+		{EF1778D4-EDB7-43FB-A535-B1C7A3E299DF}.Debug|x86.ActiveCfg = Debug|Win32
+		{EF1778D4-EDB7-43FB-A535-B1C7A3E299DF}.Debug|x86.Build.0 = Debug|Win32
+		{EF1778D4-EDB7-43FB-A535-B1C7A3E299DF}.Release|ARM64.ActiveCfg = Release|ARM64
+		{EF1778D4-EDB7-43FB-A535-B1C7A3E299DF}.Release|ARM64.Build.0 = Release|ARM64
+		{EF1778D4-EDB7-43FB-A535-B1C7A3E299DF}.Release|x64.ActiveCfg = Release|x64
+		{EF1778D4-EDB7-43FB-A535-B1C7A3E299DF}.Release|x64.Build.0 = Release|x64
+		{EF1778D4-EDB7-43FB-A535-B1C7A3E299DF}.Release|x86.ActiveCfg = Release|Win32
+		{EF1778D4-EDB7-43FB-A535-B1C7A3E299DF}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4BF150D8-7DD3-4921-9C45-525AA85947D4}
+	EndGlobalSection
+EndGlobal
