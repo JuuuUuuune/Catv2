@@ -250,7 +250,7 @@ STATE:
 			if (Mood > 3) {
 				Mood = 3;
 			}
-			printf("%s은(는) 캣타워를 뛰어다닙니다, 기분이 제법 좋아졌습니다: %d->%d", Name, Mood-1,Mood);
+			printf("%s은(는) 캣타워를 뛰어다닙니다, 기분이 제법 좋아졌습니다: %d->%d\n", Name, Mood-1,Mood);
 		}
 
 
@@ -259,7 +259,7 @@ STATE:
 			if (Mood > 3) {
 				Mood = 3;
 			}
-			printf("%s은(는) 스크래처를 긁고 놀았습니다, 기분이 제법 좋아졌습니다: %d->%d", Name, Mood-1, Mood);
+			printf("%s은(는) 스크래처를 긁고 놀았습니다, 기분이 제법 좋아졌습니다: %d->%d\n", Name, Mood-1, Mood);
 		}
 
 		if (CATPOS == POTPOS) {
@@ -883,6 +883,7 @@ STATE:
 				CATPM++;
 				Sleep(1000);
 				goto STATE;
+				break;
 
 			case 1:
 				if (TRATTF == 1) {
@@ -908,6 +909,7 @@ STATE:
 					
 
 				}
+				break;
 				
 
 			case 2:
@@ -933,6 +935,7 @@ STATE:
 
 
 				}
+				break;
 
 			case 3:
 				if (ScratcherTF == 1) {
@@ -954,9 +957,10 @@ STATE:
 					CATPM++;
 					Sleep(1000);
 					goto STATE;
-
+					
 
 				}
+				break;
 			case 4:
 				if (TowerTF == 1) {
 					printf("캣 타워를 이미 구매했습니다.\n");
@@ -980,6 +984,7 @@ STATE:
 
 
 				}
+				break;
 
 
 			}
