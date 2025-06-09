@@ -14,7 +14,7 @@ int main(void) {
 	char Name[100];
 
 	int intimacy = 2, soup = 0, UIP = 0, PRL = 0, CATPOS = 1, CDRT = 3, CATPM = 0, RMAX = ROOM_WIDTH - 2,
-		CP = 0, Mood = 0, OBJT = 0, Toy = 0 , ScratcherPOS = ROBJT, TowerPOS = ROBJT+1, POTPOS = ROOM_WIDTH -1, CAL1 = 0, CAL2 = 0, TRATTF = 0,
+		CP = 0, Mood = 0, OBJT = 0, Toy = 0 , ScratcherPOS = ROBJT, TowerPOS = ROBJT, POTPOS = ROOM_WIDTH -1, CAL1 = 0, CAL2 = 0, TRATTF = 0,
 		RAZTF = 0, ScratcherTF = 0, TowerTF = 0;
 
 
@@ -365,10 +365,6 @@ STATE:
 
 
 
-		TowerTF = 1;
-		ScratcherTF = 1;
-		OBJT = 1;
-		/*sssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss*/
 
 		if (OBJT == 1) {
 			if (TowerTF == 1 && ScratcherTF == 1) {
@@ -381,7 +377,7 @@ STATE:
 						printf(" ");
 					}
 					printf("S");
-					for (int i = 0; i < 11 - ScratcherPOS; i++)
+					for (int i = 0; i < 11 - ScratcherPOS-1; i++)
 					{
 						printf(" ");
 					}
@@ -396,7 +392,7 @@ STATE:
 						printf(" ");
 					}
 					printf("S");
-					for (int i = 0; i < 11 - TowerPOS; i++)
+					for (int i = 0; i < 11 - TowerPOS-1; i++)
 					{
 						printf(" ");
 					}
