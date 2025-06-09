@@ -11,8 +11,8 @@ int main(void) {
 	char Name[100];
 
 	int intimacy = 2, soup = 0, UIP = 0, PRL = 0, CATPOS = 1, CDRT = 3, CATPM = 0, RMAX = ROOM_WIDTH - 2,
-		CP = 0, Mood = 0, Toy = 0, ScratcherPOS = ROOM_WIDTH - 5, TowerPOS = ROOM_WIDTH - 11, CAL1 = 0, CAL2 = 0,
-		ScratcherTF = 0, TowerTF = 0;
+		CP = 0, Mood = 0, OBJT = 0, Toy = 0 , ScratcherPOS = 5, TowerPOS = 10, CAL1 = 0, CAL2 = 0, TRATTF = 0,
+		RAZTF = 0, ScratcherTF = 0, TowerTF = 0;
 
 
 
@@ -90,7 +90,7 @@ STATE:
 		else if (PRL == 2) {
 			PRL = 0;
 
-			goto ROOM2;
+			goto INTERACTION;
 		}
 
 
@@ -106,9 +106,11 @@ STATE:
 				Mood = 0;
 			}
 			printf("아무 이유없이 기분이 나빠집니다. 고양이니까?\n 쫀덕의 기분이 나빠집니다: %d->%d\n", Mood+1, Mood);
+		}
 
 
-
+		if (CATPOS == 1 && CATPM >= 1) {
+			Mood++;
 		}
 
 		switch (Mood) {
@@ -116,10 +118,13 @@ STATE:
 			case 0:
 				printf("기분이 매우 나쁜%s은(는) 집으로 향합니다.\n", Name);
 				CATPOS--;
+				if (CATPOS <= 1) {
+					CATPOS = 1;
+				}
 				break;
 
 			case 1:
-				if (Toy = 0)
+				if (OBJT = 0)
 				{	
 					Mood--;
 					if (Mood <= 0) {
@@ -127,21 +132,33 @@ STATE:
 					}
 					printf("놀거리가 없어서 기분이 매우 나빠집니다.\n");
 				}
-				else if(Toy = 1)
+				else if(OBJT = 1)
 				{	
 					if (ScratcherTF == 1 && TowerTF == 1) {
 
 						CAL1 = TowerPOS - CATPOS;
-						CAL1 = abs(CAL1);
-
 						CAL2 = ScratcherPOS - CATPOS;
-						CAL2 = abs(CAL2);
-
 						
 						if (CAL1 < CAL2 ) {
 							CATPOS--;
-							printf("%s은(는) 심심해서 타워쪽으로 이동합니다.", Name);
+							CDRT = 0;
 
+							if (CATPOS <= 1) {
+								CATPOS = 1;
+							}
+
+							printf("%s은(는) 심심해서 타워쪽으로 이동합니다.\n", Name);
+
+						}
+						else {
+							CDRT = 1;
+							CATPOS++;
+
+							if (CATPOS >= RMAX) {
+								CATPOS = RMAX;
+							}
+
+							printf("%s은(는) 심심해서 스크래처쪽으로 이동합니다.\n", Name);
 						}
 					}
 					else if(ScratcherTF == 1)
@@ -152,7 +169,7 @@ STATE:
 					{
 
 					}
-					printf("%s은(는) 심심해서 스크래처쪽으로 이동합니다.\n", Name);
+					
 				}
 				break;
 
@@ -165,6 +182,19 @@ STATE:
 				break;
 
 		}
+
+
+		if (CATPOS == TowerPOS) {
+			Mood++;
+			printf("%s은(는) 캣타워를 뛰어다닙니다, 기분이 제법 좋아졌습니다: %d->%d", Name, Mood-1,Mood);
+		}
+
+
+		if (CATPOS == ScratcherPOS) {
+			Mood++;
+			printf("%s은(는) 스크래처를 긁고 놀았습니다, 기분이 제법 좋아졌습니다: %d->%d", Name, Mood-1, Mood);
+		}
+
 
 		PRL = 4;
 		goto ROOM1;
@@ -239,15 +269,54 @@ STATE:
 		for (int i = 0; i < ROOM_WIDTH; i++) {
 			printf("#");
 		}
+		
+		
 		printf("\n");
-
-
-
 		printf("#");
 		printf("H");
-		for (int i = 0; i < ROOM_WIDTH - 4; i++) {
-			printf(" ");
+
+		if (OBJT == 1) {
+
+			for (int i = 0; i < 5; i++) {
+				printf(" ");
+			}
+			if (TowerTF == 1 && ScratcherTF == 1) {
+				printf("T");
+				for (int i = 0; i < 3; i++) {
+					printf(" ");
+				}
+				printf("S");
+				printf(" ");
+				
+
+			}
+			else if (TowerTF == 1) {
+				printf("T");
+				for (int i = 0; i < 4; i++) {
+					printf(" ");
+				}
+			}
+
+			else if (ScratcherTF == 1) {
+				for (int i = 0; i < 6; i++)
+				{
+					printf(" ");
+
+				}
+				printf("S");
+				printf(" ");
+
+			}
 		}
+		else
+		{
+			for (int i = 0; i < 11; i++) {
+				printf(" ");
+			}
+		}
+			
+		
+		
 		printf("B");
 		printf("#\n");
 
@@ -261,7 +330,7 @@ STATE:
 					continue;
 				}
 			}
-			else if (CATPOS == 1 && CDRT == 0 && i == 2 && CATPM == 1) {
+			else if (CATPOS == 1 && CDRT == 0 && i == 2 && CATPM >= 1) {
 				printf(".");
 				continue;
 			}
@@ -358,7 +427,7 @@ STATE:
 				continue;
 			}
 
-
+			
 			else if (CATPOS == 8 && CDRT == 1 && i == 7) {
 				printf(".");
 			}
@@ -372,6 +441,107 @@ STATE:
 				printf(".");
 				continue;
 			}
+
+			else if (CATPOS == 9 && CDRT == 1 && i == 8) {
+				printf(".");
+				}
+			else if (CATPOS == 9 && i == 9) {
+					printf("C");
+					if (CDRT == 1) {
+						continue;
+					}
+					}
+			else if (CATPOS == 9 && CDRT == 0 && i == 10) {
+						printf(".");
+						continue;
+						}
+
+
+			else if (CATPOS == 10 && CDRT == 1 && i == 9) {
+				printf(".");
+			}
+			else if (CATPOS == 10 && i == 10) {
+				printf("C");
+				if (CDRT == 1) {
+					continue;
+				}
+				}
+			else if (CATPOS == 10 && CDRT == 0 && i == 11) {
+					printf(".");
+					continue;
+					}
+
+			else if (CATPOS == 11 && CDRT == 1 && i == 10) {
+					printf(".");
+						}
+			else if (CATPOS == 11 && i == 11) {
+					printf("C");
+					if (CDRT == 1) {
+					continue;
+							}
+							}
+			else if (CATPOS == 11 && CDRT == 0 && i == 12) {
+					printf(".");
+					continue;
+								}
+
+			else if (CATPOS == 12 && CDRT == 1 && i == 11) {
+					printf(".");
+									}
+			else if (CATPOS == 12 && i == 12) {
+					printf("C");
+					if (CDRT == 1) {
+					continue;
+					}
+					}
+			else if (CATPOS == 12 && CDRT == 0 && i == 13) {
+					printf(".");
+					continue;
+					}
+
+			
+			else if (CATPOS == 13 && CDRT == 1 && i == 12) {
+				printf(".");
+			}
+			else if (CATPOS == 13 && i == 13) {
+				printf("C");
+				if (CDRT == 1) {
+					continue;
+				}
+			}
+			else if (CATPOS == 13 && CDRT == 0 && i == 14) {
+				printf(".");
+				continue;
+			}
+			
+			else if (CATPOS == 14 && CDRT == 1 && i == 13) {
+				printf(".");
+			}
+			else if (CATPOS == 14 && i == 14) {
+				printf("C");
+				if (CDRT == 1) {
+					continue;
+				}
+			}
+			else if (CATPOS == 14 && CDRT == 0 && i == 15) {
+				printf(".");
+				continue;
+			}
+			
+			else if (CATPOS == 15 && CDRT == 1 && i == 14) {
+				printf(".");
+			}
+			else if (CATPOS == 15 && i == 15) {
+				printf("C");
+				if (CDRT == 1) {
+					continue;
+				}
+			}
+			else if (CATPOS == 15 && CDRT == 0 && i == 16) {
+				printf(".");
+				continue;
+			}
+
 
 			else {
 				printf(" ");
@@ -390,12 +560,29 @@ STATE:
 			goto STATE;
 		}
 
-		printf("어떤상호작용을하시겠습니까?   0. 아무것도 하지않음  1. 긁어 주기\n");
+
+
+		printf("어떤상호작용을하시겠습니까?\n");
+
+		int C = 2;
+		if (Toy == 0) {
+			printf("0. 아무것도 하지않음\n1. 긁어 주기\n");
+		}
+		else if(Toy == 1) {
+			if (TRATTF == 1) {
+				printf("%d. 장난감 쥐로 놀아주기", C);
+				C++;
+			}
+			if (RAZTF == 1) {
+				printf("%d. 레이저 포인터로 놀아주기", C);
+				C == 2;
+			}
+		}
 
 		while (1) {
 			printf(">>");
 			scanf_s("%d", &UIP);
-			if (UIP == 0 || UIP == 1) {
+			if (UIP == 0 || UIP == 1 || UIP == 2 || UIP == 3) {
 				break;
 			}
 			else {
@@ -412,7 +599,7 @@ STATE:
 		goto STATE;
 
 
-	ROOM2:
+	INTERACTION:
 
 
 		switch (UIP)
@@ -428,7 +615,7 @@ STATE:
 				printf("냄비 쪽으로 움직입니다.\n");
 				CATPOS++;
 				CDRT = 1;
-				CATPM = 1;
+				CATPM++;
 				PRL = 3;
 				if (RMAX <= CATPOS) {
 					CATPOS = RMAX;
@@ -471,6 +658,23 @@ STATE:
 
 			}
 			break;
+
+
+		case 2:
+
+
+
+			break;
+
+		case 3:
+
+
+
+
+			break;
+
+
+
 		}
 
 
