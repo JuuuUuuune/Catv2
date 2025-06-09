@@ -840,7 +840,7 @@ STATE:
 
 			printf("0. 아무것도사지않는다\n");
 
-			printf("1. 장난감쥐: 1 CP");
+			printf("1. 장난감 쥐: 1 CP");
 			if (TRATTF == 1) {
 				printf("(품절)");
 			}
